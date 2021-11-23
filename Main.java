@@ -70,7 +70,7 @@ public class Main {
         System.out.println("Autorization \n Enter login and password:");
         String login = (String) scanner.nextLine();
         String password = (String) scanner.nextLine();
-        if (!client.isAuth(login, password)) {
+        if (client.isAuth(login, password)) {
             getMenu();
         } else {
             System.exit(1);
