@@ -1,37 +1,24 @@
-import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Category {
-    String name;
-    ArrayList<Product> products;
+    String nameCategory;
+    Product[] products;
 
-    public Category() {
-    }
-
-    public Category(String name, ArrayList<Product> products) {
-        this.name = name;
+    Category(String nameCategory, Product[] products) {
+        this.nameCategory = nameCategory;
         this.products = products;
     }
 
-    public String getName() {
-        return this.name;
+    public static void getCategory(Category[] c) {
+        for (int i = 0; i < c.length; ++i)
+            System.out.println("№" + (i + 1) + " " + c[i].nameCategory);
+        System.out.println("0.Back");
+        Scanner sc = new Scanner(System.in);
+        int number = sc.nextInt();
+        if (number == 0)
+            Main.getMenu();
+        else
+            Product.seeProduct(Main.all[number - 1]);
+
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public ArrayList<Product> getProducts() {
-
-        return this.products;
-    }
-
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
-    }
-
-    @Override
-    public String toString() {
-        return "{" + " name='" + getName() + "'" + ", products='" + getProducts() + "'" + "}";
-    }
-
 }

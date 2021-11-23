@@ -1,45 +1,53 @@
+import java.util.Scanner;
+
 public class Product {
-    String name;
-    double cost;
-    int rating;
+    String nameProduct;
+    double cost, rating;
 
-    public Product() {
-    }
-
-    public Product(String name, double cost, int rating) {
-        this.name = name;
+    Product(String nameProduct, double cost, double rating) {
+        this.nameProduct = nameProduct;
         this.cost = cost;
         this.rating = rating;
     }
 
-    public String getName() {
-        return this.name;
+    public static double getCash(Product[] p) {
+        double cash = 0.0;
+        for (int i = 0; i < p.length; ++i) {
+            if (p[i] == null)
+                break;
+            cash += p[i].cost;
+        }
+        return cash;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public static void seeProduct(Category cat) {
+        for (int i = 0; i < cat.products.length; ++i) {
+            System.out.println((i + 1) + ". " + cat.products[i].nameProduct + " ------- " + cat.products[i].cost
+                    + " ------- " + cat.products[i].rating);
+        }
+        System.out.println("0.Back");
+        Scanner sc = new Scanner(System.in);
+        int number = sc.nextInt();
+        if (number == 0)
+            Category.getCategory(Main.all);
+        else
+            buyProduct(cat.products[number - 1]);
     }
 
-    public double getCost() {
-        return this.cost;
-    }
+    private static void buyProduct(Product p) {
+        System.out.println("Product " + p.nameProduct + " to " + p.cost + " basket");
+        for (int i = 0; i < Main.card.length; ++i) {
+            if (Main.card[i] == null) {
+                Main.card[i] = p;
+                break;
+            } else {
+                if (i + 1 == Main.card.length && Main.card[i] == null) {
+                    System.out.println("Basket full");
+                    break;
+                }
+            }
+        }
 
-    public void setCost(double cost) {
-        this.cost = cost;
+        Category.getCategory(Main.all);
     }
-
-    public int getRating() {
-        return this.rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    @Override
-    public String toString() {
-        return "{" + " name='" + getName() + "'" + ", cost='" + getCost() + "'" + ", rating='" + getRating() + "'"
-                + "}";
-    }
-
 }
