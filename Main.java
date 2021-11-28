@@ -12,21 +12,21 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int number = sc.nextInt();
         switch (number) {
-        case 1: {
-            Category.getCategory(all);
-            break;
-        }
-        case 2: {
-            Basket.getBasket(card);
-            break;
-        }
-        case 3: {
-            Buy();
-            break;
-        }
-        case 0: {
-            break;
-        }
+            case 1: {
+                Category.getCategory(all);
+                break;
+            }
+            case 2: {
+                Basket.getBasket(card);
+                break;
+            }
+            case 3: {
+                Buy();
+                break;
+            }
+            case 0: {
+                break;
+            }
         }
     }
 
@@ -74,7 +74,7 @@ public class Main {
         System.out.println("Autorization \n Enter login and password:");
         String login = (String) scanner.nextLine();
         String password = (String) scanner.nextLine();
-        if (client.isAuth(login, password)) {
+        if (!client.isAuth(login, password)) {
             getMenu();
         } else {
             System.exit(1);
