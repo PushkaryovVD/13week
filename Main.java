@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.time.LocalDate;
 
 public class Main {
 
@@ -41,6 +42,9 @@ public class Main {
         }
         double gc = Product.getCash(client.purchased.purchased);
         System.out.print("Total check -------" + gc);
+        LocalDate today = LocalDate.now();
+
+        System.out.print("\nDate: " + today);
 
     }
 
